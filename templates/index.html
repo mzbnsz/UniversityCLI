@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+
+{% block content %}
+
+    <h1>University Manager</h1>
+
+    <p>
+        Welcome to the university management system.
+    </p>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h2>Students</h2>
+
+            <p>
+                View all students in the university.
+            </p>
+
+            <a href="/students">Open Students</a>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Teachers</h2>
+
+            <p>
+                View all teachers in the university.
+            </p>
+
+            <a href="/teachers">Open Teachers</a>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Statistics</h2>
+
+            <p>
+                View university statistics.
+            </p>
+
+            <a href="/statistics">Open Statistics</a>
+
+        </div>
+
+    </div>
+
+{% endblock %}

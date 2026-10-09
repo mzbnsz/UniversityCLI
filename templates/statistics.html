@@ -1,0 +1,91 @@
+{% extends "base.html" %} <!-- используем общий шаблон base.html -->
+
+
+{% block title %}
+Statistics
+{% endblock %}
+
+
+{% block content %}
+
+    <h1>University Statistics</h1>
+
+    <p>
+        General information about the university.
+    </p>
+
+
+    <div class="stats">
+
+        <div class="stat-card">
+
+            <h2>Total Users</h2>
+
+            <p>{{ total_users }}</p>
+            <!-- выводим значение total_users, которое пришло из Flask -->
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h2>Students</h2>
+
+            <p>{{ total_students }}</p>
+            <!-- количество студентов -->
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h2>Teachers</h2>
+
+            <p>{{ total_teachers }}</p>
+            <!-- количество преподавателей -->
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h2>Average GPA</h2>
+
+            <p>{{ "%.2f"|format(average_gpa) }}</p>
+            <!-- показываем GPA с двумя цифрами после точки -->
+
+        </div>
+
+    </div>
+
+
+    {% if top_student %}
+    <!-- если лучший студент существует -->
+
+        <div class="top-student">
+
+            <h2>Top Student</h2>
+
+            <p>
+                {{ top_student.first_name }}
+                {{ top_student.last_name }}
+            </p>
+
+            <p>
+                Faculty: {{ top_student.faculty }}
+            </p>
+
+            <p>
+                Course: {{ top_student.course }}
+            </p>
+
+            <p>
+                GPA: {{ top_student.gpa }}
+            </p>
+
+        </div>
+
+    {% endif %}
+    <!-- конец условия -->
+
+{% endblock %}

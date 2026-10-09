@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add Student
+{% endblock %}
+
+
+{% block content %}
+
+    <h1>Add Student</h1>
+    <!-- заголовок -->
+
+
+    <form method="POST">
+    <!-- form создаёт HTML-форму -->
+    <!-- method="POST" означает: данные будут отправлены на сервер -->
+
+
+        <label>ID</label>
+        <!-- подпись поля -->
+
+        <input type="number" name="user_id" required>
+        <!-- input = поле ввода -->
+        <!-- type="number" = только число -->
+        <!-- name="user_id" = под этим именем Flask получит данные -->
+        <!-- required = поле обязательно -->
+
+
+        <label>First name</label>
+
+        <input type="text" name="first_name" required>
+        <!-- text = обычное текстовое поле -->
+
+
+        <label>Last name</label>
+
+        <input type="text" name="last_name" required>
+
+
+        <label>Age</label>
+
+        <input type="number" name="age" required>
+
+
+        <label>Email</label>
+
+        <input type="email" name="email" required>
+        <!-- type="email" помогает браузеру проверить формат email -->
+
+
+        <label>Faculty</label>
+
+        <input type="text" name="faculty" required>
+
+
+        <label>Course</label>
+
+        <input type="number" name="course" required>
+
+
+        <label>GPA</label>
+
+        <input type="number" step="0.1" name="gpa" required>
+        <!-- step="0.1" позволяет вводить 4.5, 4.8 и т.д. -->
+
+
+        <button type="submit">
+            Save Student
+        </button>
+        <!-- submit отправляет форму -->
+
+    </form>
+
+{% endblock %}

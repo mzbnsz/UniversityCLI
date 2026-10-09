@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Teachers
+{% endblock %}
+
+
+{% block content %}
+
+    <h1>Teachers</h1>
+
+    <p>
+        List of all university teachers.
+    </p>
+
+
+    <!-- ПОИСК -->
+
+    <form method="GET" class="search-form">
+
+        <input
+            type="text"
+            name="q"
+            value="{{ query }}"
+            placeholder="Search teacher..."
+        >
+
+
+        <button type="submit">
+            Search
+        </button>
+
+
+        {% if query %}
+
+            <a
+                class="clear-button"
+                href="{{ url_for('teachers') }}"
+            >
+                Clear
+            </a>
+
+        {% endif %}
+
+    </form>
+
+
+    <a
+        class="button"
+        href="{{ url_for('add_teacher') }}"
+    >
+        Add Teacher
+    </a>
+
+
+    {% if teachers %}
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>№</th>
+                    <th>ID</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                    <th>Subject</th>
+                    <th>Experience</th>
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for teacher in teachers %}
+
+                    <tr>
+
+                        <td>{{ loop.index }}</td>
+
+                        <td>
+                            {{ teacher.user_id }}
+                        </td>
+
+                        <td>
+                            {{ teacher.first_name }}
+                        </td>
+
+                        <td>
+                            {{ teacher.last_name }}
+                        </td>
+
+                        <td>
+                            {{ teacher.age }}
+                        </td>
+
+                        <td>
+                            {{ teacher.email }}
+                        </td>
+
+                        <td>
+                            {{ teacher.department }}
+                        </td>
+
+                        <td>
+                            {{ teacher.subject }}
+                        </td>
+
+                        <td>
+                            {{ teacher.experience }}
+                        </td>
+
+
+                        <td>
+
+                            <a
+                                class="edit-button"
+                                href="{{ url_for('edit_teacher', user_id=teacher.user_id) }}"
+                            >
+                                Edit
+                            </a>
+
+
+                            <form
+                                action="{{ url_for('delete_teacher', user_id=teacher.user_id) }}"
+                                method="POST"
+                                class="delete-form"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="delete-button"
+                                >
+                                    Delete
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+
+    {% else %}
+
+        <div class="empty-message">
+
+            No teachers found.
+
+        </div>
+
+    {% endif %}
+
+{% endblock %}

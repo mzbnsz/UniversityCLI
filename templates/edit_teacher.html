@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Teacher
+{% endblock %}
+
+
+{% block content %}
+
+    <h1>Edit Teacher</h1>
+
+
+    <form method="POST">
+
+
+        <label>ID</label>
+
+        <input
+            type="number"
+            value="{{ teacher.user_id }}"
+            disabled
+        >
+
+
+        <label>First name</label>
+
+        <input
+            type="text"
+            name="first_name"
+            value="{{ teacher.first_name }}"
+            required
+        >
+
+
+        <label>Last name</label>
+
+        <input
+            type="text"
+            name="last_name"
+            value="{{ teacher.last_name }}"
+            required
+        >
+
+
+        <label>Age</label>
+
+        <input
+            type="number"
+            name="age"
+            value="{{ teacher.age }}"
+            required
+        >
+
+
+        <label>Email</label>
+
+        <input
+            type="email"
+            name="email"
+            value="{{ teacher.email }}"
+            required
+        >
+
+
+        <label>Department</label>
+
+        <input
+            type="text"
+            name="department"
+            value="{{ teacher.department }}"
+            required
+        >
+
+
+        <label>Subject</label>
+
+        <input
+            type="text"
+            name="subject"
+            value="{{ teacher.subject }}"
+            required
+        >
+
+
+        <label>Experience</label>
+
+        <input
+            type="number"
+            name="experience"
+            value="{{ teacher.experience }}"
+            required
+        >
+
+
+        <button type="submit">
+            Save Changes
+        </button>
+
+
+    </form>
+
+{% endblock %}

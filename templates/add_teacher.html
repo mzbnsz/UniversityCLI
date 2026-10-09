@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+<!-- используем общий шаблон сайта -->
+
+
+{% block title %}
+Add Teacher
+{% endblock %}
+<!-- название вкладки браузера -->
+
+
+{% block content %}
+
+    <h1>Add Teacher</h1>
+
+
+    <form method="POST">
+    <!-- POST означает: форма отправит данные Flask -->
+
+
+        <label>ID</label>
+        <input type="number" name="user_id" required>
+
+
+        <label>First name</label>
+        <input type="text" name="first_name" required>
+
+
+        <label>Last name</label>
+        <input type="text" name="last_name" required>
+
+
+        <label>Age</label>
+        <input type="number" name="age" required>
+
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+
+        <label>Department</label>
+        <input type="text" name="department" required>
+
+
+        <label>Subject</label>
+        <input type="text" name="subject" required>
+
+
+        <label>Experience</label>
+        <input type="number" name="experience" required>
+
+
+        <button type="submit">
+            Save Teacher
+        </button>
+
+    </form>
+
+{% endblock %}

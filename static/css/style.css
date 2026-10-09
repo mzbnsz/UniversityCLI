@@ -1,0 +1,312 @@
+body {
+    margin: 0; /* убираем стандартный внешний отступ */
+    font-family: Arial, sans-serif; /* шрифт */
+    background-color: #f1f5f9; /* фон страницы */
+    color: #111827; /* цвет текста */
+}
+
+
+.navbar {
+    display: flex; /* ставим элементы рядом в одну линию */
+    justify-content: space-between; /* один элемент слева, другой справа */
+    align-items: center; /* выравниваем по вертикали */
+    background-color: #0f172a; /* тёмно-синий фон */
+    padding: 20px 40px; /* внутренние отступы */
+}
+
+
+.logo {
+    font-size: 22px; /* размер текста */
+    font-weight: bold; /* жирный текст */
+    color: #38bdf8; /* голубой цвет */
+}
+
+
+.nav-links {
+    display: flex; /* ссылки будут стоять рядом */
+    gap: 25px; /* расстояние между ссылками */
+}
+
+
+.nav-links a {
+    color: white; /* цвет текста ссылки */
+    text-decoration: none; /* убрать подчёркивание */
+    font-weight: bold; /* жирный текст */
+}
+
+
+.nav-links a:hover {
+    color: #38bdf8; /* цвет при наведении */
+}
+
+
+.container {
+    width: 90%; /* ширина контейнера */
+    max-width: 1200px; /* максимум 1200px */
+    margin: 40px auto; /* центрируем контейнер */
+}
+
+
+h1 {
+    color: #0f172a;
+}
+
+
+a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+
+a:hover {
+    color: #38bdf8;
+}
+
+
+.cards {
+    display: flex; /* карточки ставим рядом */
+    gap: 20px; /* расстояние между карточками */
+    margin-top: 30px; /* отступ сверху */
+}
+
+
+.card {
+    flex: 1; /* все карточки одинаковой ширины */
+    background-color: white; /* белый фон */
+    padding: 25px; /* внутренний отступ */
+    border-radius: 10px; /* закругляем углы */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* тень */
+}
+
+
+.card h2 {
+    color: #2563eb;
+}
+
+
+.card p {
+    color: #475569;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    margin-top: 20px;
+}
+
+
+th {
+    background-color: #2563eb;
+    color: black;
+    padding: 12px;
+    text-align: left;
+}
+
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #cbd5e1;
+}
+
+
+tr:nth-child(even) {
+    background-color: #e0f2fe;
+}
+
+
+tr:hover {
+    background-color: #bae6fd;
+}
+
+.stats {
+    display: flex; /* карточки ставим рядом */
+    gap: 20px; /* расстояние между карточками */
+    margin-top: 30px; /* отступ сверху */
+}
+
+
+.stat-card {
+    flex: 1; /* все карточки одинаковой ширины */
+    background-color: white; /* белый фон */
+    padding: 25px; /* внутренний отступ */
+    border-radius: 10px; /* закруглённые углы */
+    text-align: center; /* текст по центру */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* тень */
+}
+
+
+.stat-card h2 {
+    color: #2563eb; /* синий заголовок */
+}
+
+
+.stat-card p {
+    font-size: 28px; /* большое число */
+    font-weight: bold; /* жирное */
+    color: #0f172a; /* тёмный текст */
+}
+
+
+.top-student {
+    margin-top: 30px; /* отступ сверху */
+    background-color: #e0f2fe; /* светло-голубой фон */
+    padding: 25px; /* внутренний отступ */
+    border-radius: 10px; /* закруглённые углы */
+}
+
+
+.top-student h2 {
+    color: #2563eb; /* синий заголовок */
+}
+
+
+form {
+    display: flex; /* включаем flexbox */
+    flex-direction: column; /* элементы идут сверху вниз */
+    gap: 10px; /* расстояние между элементами */
+    max-width: 500px; /* максимальная ширина формы */
+    background-color: white; /* белый фон */
+    padding: 25px; /* внутренний отступ */
+    border-radius: 10px; /* закруглённые углы */
+    margin-top: 20px; /* отступ сверху */
+}
+
+
+label {
+    font-weight: bold; /* жирные подписи */
+}
+
+
+input {
+    padding: 10px; /* внутренний отступ */
+    border: 1px solid #cbd5e1; /* рамка */
+    border-radius: 6px; /* закругление */
+    font-size: 16px; /* размер текста */
+}
+
+
+button {
+    margin-top: 10px;
+    padding: 12px;
+    background-color: #2563eb;
+    color: black;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+button:hover {
+    background-color: #38bdf8;
+}
+
+
+.button {
+    display: inline-block;
+    background-color: #2563eb;
+    color: black;
+    padding: 10px 18px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+
+.button:hover {
+    background-color: #38bdf8;
+    color: black;
+}
+
+.delete-form {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+}
+
+
+.delete-button {
+    margin: 0;
+    padding: 8px 12px;
+    background-color: #ef4444;
+    color: black;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
+.delete-button:hover {
+    background-color: #f87171;
+}
+
+.edit-button {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #38bdf8;
+    color: black;
+    border-radius: 6px;
+    margin-right: 5px;
+}
+
+
+.edit-button:hover {
+    background-color: #7dd3fc;
+    color: black;
+}
+
+
+.search-form {
+    display: flex; /* input и кнопки стоят рядом */
+    flex-direction: row; /* направление слева направо */
+    align-items: center; /* выравниваем по центру */
+    gap: 10px; /* расстояние между элементами */
+
+    max-width: none; /* убираем ограничение обычной формы */
+    background-color: transparent;
+
+    padding: 0;
+    margin: 20px 0;
+}
+
+
+.search-form input {
+    width: 350px; /* ширина поиска */
+}
+
+
+.search-form button {
+    margin: 0; /* убираем старый margin кнопки */
+}
+
+
+.clear-button {
+    display: inline-block;
+
+    padding: 11px 16px;
+
+    background-color: #cbd5e1;
+    color: black;
+
+    border-radius: 6px;
+}
+
+
+.clear-button:hover {
+    background-color: #94a3b8;
+    color: black;
+}
+
+
+.empty-message {
+    margin-top: 25px;
+
+    padding: 20px;
+
+    background-color: #e0f2fe;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+}
