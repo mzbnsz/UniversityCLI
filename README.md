@@ -1,734 +1,424 @@
-# UniversityCLI
+# University Manager
 
-UniversityCLI — консольная система управления пользователями университета.
+University Manager — учебный веб-проект на Python и Flask для управления студентами и преподавателями университета.
 
-Проект позволяет работать со студентами и преподавателями, хранить данные, искать пользователей, изменять информацию и формировать простую статистику.
-
-Проект создан на Python с использованием ООП и модульной архитектуры.
+Проект начинался как консольное приложение, а затем был переработан в веб-приложение с HTML, CSS, Flask и Jinja2.
 
 ---
 
-## Основные возможности
+## Возможности
 
-### Пользователи
-
-Система поддерживает два типа пользователей:
-
-- Student
-- Teacher
-
-Оба наследуются от базового класса `User`.
-
----
-
-## Student
-
-Студент содержит:
-
-- ID
-- имя
-- фамилию
-- возраст
-- email
-- факультет
-- курс обучения
-- средний балл
-
-Возможности:
-
-- добавить студента
-- посмотреть всех студентов
-- найти студента по ID
-- найти студента по имени
-- изменить данные студента
-- удалить студента
-- посмотреть информацию о студенте
+- просмотр студентов и преподавателей;
+- добавление новых пользователей;
+- редактирование данных;
+- удаление пользователей;
+- поиск;
+- статистика университета;
+- хранение данных в JSON;
+- валидация данных;
+- логирование действий и ошибок.
 
 ---
 
-## Teacher
+## CRUD
 
-Преподаватель содержит:
+В проекте реализованы основные CRUD-операции:
 
-- ID
-- имя
-- фамилию
-- возраст
-- email
-- кафедру
-- предмет
-- стаж работы
-
-Возможности:
-
-- добавить преподавателя
-- посмотреть список преподавателей
-- найти преподавателя
-- изменить данные
-- удалить преподавателя
+- **Create** — добавление студентов и преподавателей;
+- **Read** — просмотр данных;
+- **Update** — редактирование;
+- **Delete** — удаление.
 
 ---
 
-# ООП
+## Технологии
 
-## Наследование
+### Backend
 
-Базовый класс:
+- Python
+- Flask
+- Jinja2
+- OOP
 
-User
+### Frontend
 
-От него наследуются:
+- HTML5
+- CSS3
+- Flexbox
 
-User
-├── Student
-└── Teacher
+### Data
 
-Общие данные находятся в `User`.
+- JSON
 
-Например:
+### Дополнительно
 
-- id
-- first_name
-- last_name
-- age
-- email
-
-А специфические данные находятся в дочерних классах.
-
----
-
-## Инкапсуляция
-
-Некоторые данные должны быть защищены.
-
-Например:
-
-_age
-
-Изменение возраста должно происходить через:
-
-@property
-
-и
-
-@age.setter
-
-Нельзя установить:
-
-- отрицательный возраст
-- слишком большой возраст
-- некорректное значение
+- Git
+- GitHub
+- Logging
+- Exception Handling
 
 ---
 
-## Полиморфизм
+## Архитектура приложения
 
-Классы Student и Teacher должны иметь одинаковый метод:
+```mermaid
+flowchart LR
+    A[Browser] --> B[Flask / app.py]
+    B --> C[services.py]
+    C --> D[models.py]
+    C --> E[utils.py]
+    E --> F[(users.json)]
 
-get_info()
-
-Но каждый класс реализует его по-своему.
-
-Например:
-
-Student.get_info()
-
-возвращает данные студента.
-
-Teacher.get_info()
-
-возвращает данные преподавателя.
+    B --> G[Jinja2 Templates]
+    G --> H[HTML]
+    I[CSS] --> H
+    H --> A
+```
 
 ---
 
-## Абстракция
+## Структура проекта
 
-Класс User сделать абстрактным.
-
-Использовать:
-
-from abc import ABC, abstractmethod
-
-Метод:
-
-get_info()
-
-должен быть абстрактным.
-
-Student и Teacher обязаны его реализовать.
-
----
-
-# Структура проекта
-
+```text
 UniversityCLI/
-
-    main.py
-    models.py
-    services.py
-    utils.py
-    data/
-        users.json
-    logs/
-        app.log
-    README.md
+├── app.py
+├── models.py
+├── services.py
+├── utils.py
+├── logger.py
+│
+├── data/
+│   └── users.json
+│
+├── templates/
+│   ├── base.html
+│   ├── index.html
+│   ├── students.html
+│   ├── teachers.html
+│   ├── statistics.html
+│   ├── add_student.html
+│   ├── add_teacher.html
+│   ├── edit_student.html
+│   └── edit_teacher.html
+│
+├── static/
+│   └── css/
+│       └── style.css
+│
+├── .gitignore
+└── README.md
+```
 
 ---
 
-# models.py
+## Основные файлы
+
+### `app.py`
+
+Главный файл Flask-приложения.
+
+Отвечает за:
+
+- маршруты;
+- обработку HTTP-запросов;
+- GET и POST;
+- работу с HTML-шаблонами;
+- добавление;
+- редактирование;
+- удаление;
+- поиск;
+- статистику;
+- перенаправления между страницами.
+
+### `models.py`
 
 Содержит классы:
 
-- User
-- Student
-- Teacher
+- `User`
+- `Student`
+- `Teacher`
 
-Здесь находится только структура объектов и их методы.
+Используются принципы ООП:
 
-Например:
+- наследование;
+- инкапсуляция;
+- абстракция;
+- полиморфизм.
 
-User
-Student
-Teacher
+Также реализована валидация данных:
+
+- имени;
+- фамилии;
+- возраста;
+- email;
+- курса;
+- GPA;
+- стажа преподавателя.
+
+### `services.py`
+
+Содержит бизнес-логику приложения:
+
+- добавление пользователя;
+- поиск по ID;
+- обновление;
+- удаление;
+- поиск;
+- получение студентов;
+- получение преподавателей.
+
+### `utils.py`
+
+Отвечает за:
+
+- загрузку пользователей из JSON;
+- сохранение пользователей в JSON;
+- восстановление объектов `Student` и `Teacher` из сохранённых данных.
+
+### `logger.py`
+
+Отвечает за логирование:
+
+- добавления;
+- удаления;
+- редактирования;
+- поиска;
+- ошибок;
+- проблем с валидацией;
+- работы с JSON.
+
+### `templates/`
+
+Содержит HTML-шаблоны Flask и Jinja2.
+
+Используются:
+
+- переменные;
+- циклы;
+- условия;
+- наследование шаблонов;
+- вывод данных из Python.
+
+### `static/`
+
+Содержит CSS-файлы и отвечает за внешний вид приложения.
 
 ---
 
-# services.py
+## Как работает приложение
 
-Содержит бизнес-логику приложения.
+Пользователь открывает страницу в браузере.
 
-Например:
+Flask принимает запрос, вызывает нужный маршрут, использует бизнес-логику и данные, после чего передаёт результат в HTML-шаблон.
 
-- add_student()
-- add_teacher()
-- get_all_students()
-- get_all_teachers()
-- find_user_by_id()
-- search_user()
-- update_user()
-- delete_user()
+```text
+Browser
+   ↓
+Flask
+   ↓
+app.py
+   ↓
+services.py
+   ↓
+models.py / utils.py
+   ↓
+users.json
+```
 
-Также здесь будет класс:
+После обработки данных:
 
-UniversityService
-
-который управляет пользователями системы.
-
----
-
-# utils.py
-
-Содержит вспомогательные функции.
-
-Например:
-
-- validate_email()
-- validate_age()
-- generate_id()
-- load_data()
-- save_data()
-
-Также здесь будет обработка ошибок пользовательского ввода.
+```text
+Python objects
+     ↓
+render_template()
+     ↓
+Jinja2
+     ↓
+HTML + CSS
+     ↓
+Browser
+```
 
 ---
 
-# main.py
+## Основные страницы
 
-Точка входа в программу.
+| URL | Назначение |
+|---|---|
+| `/` | Главная страница |
+| `/students` | Список студентов |
+| `/students/add` | Добавление студента |
+| `/students/edit/<id>` | Редактирование студента |
+| `/students/delete/<id>` | Удаление студента |
+| `/teachers` | Список преподавателей |
+| `/teachers/add` | Добавление преподавателя |
+| `/teachers/edit/<id>` | Редактирование преподавателя |
+| `/teachers/delete/<id>` | Удаление преподавателя |
+| `/statistics` | Статистика университета |
 
-Здесь находится CLI-интерфейс.
+---
+
+## Поиск
+
+Поиск работает через GET-параметр.
 
 Пример:
 
-=========================
-     UNIVERSITY CLI
-=========================
+```text
+/students?q=Ali
+```
 
-1. Students
-2. Teachers
-3. Search
-4. Statistics
-0. Exit
+Flask получает значение через:
 
-Выберите действие:
+```python
+request.args.get("q")
+```
 
----
-
-# Меню студентов
-
-1. Add student
-2. Show students
-3. Find student
-4. Update student
-5. Delete student
-0. Back
+После этого используется поиск из `services.py`.
 
 ---
 
-# Меню преподавателей
+## Статистика
 
-1. Add teacher
-2. Show teachers
-3. Find teacher
-4. Update teacher
-5. Delete teacher
-0. Back
+На странице статистики отображается:
 
----
-
-# Поиск
-
-Пользователь должен иметь возможность искать:
-
-- по ID
-- по имени
-- по фамилии
-- по email
+- общее количество пользователей;
+- количество студентов;
+- количество преподавателей;
+- средний GPA;
+- лучший студент по GPA.
 
 ---
 
-# Сортировка
+## Пример Student
 
-Добавить возможность сортировать студентов:
-
-- по имени
-- по возрасту
-- по курсу
-- по среднему баллу
-
-Например:
-
-Students sorted by GPA
-
-1. Ali Karimov — 4.9
-2. Ahmad Saidov — 4.7
-3. John Smith — 4.1
-
----
-
-# Статистика
-
-Добавить отдельный раздел:
-
-Statistics
-
-Он должен показывать:
-
-- количество студентов
-- количество преподавателей
-- общее количество пользователей
-- средний возраст студентов
-- средний GPA студентов
-- студент с самым высоким GPA
-
-Пример:
-
-University Statistics
-
-Students: 24
-Teachers: 7
-Total users: 31
-
-Average student age: 20.4
-Average GPA: 4.2
-
-Top student:
-Ali Karimov — GPA 4.9
+```json
+{
+    "type": "student",
+    "user_id": 1001,
+    "first_name": "Mizbonshoh",
+    "last_name": "Murzoev",
+    "age": 19,
+    "email": "mizbonshoh@example.com",
+    "faculty": "Computer Science",
+    "course": 2,
+    "gpa": 4.8
+}
+```
 
 ---
 
-# Хранение данных
+## Пример Teacher
 
-Данные не должны исчезать после завершения программы.
-
-Использовать:
-
-JSON
-
-Файл:
-
-data/users.json
-
-При запуске программы данные загружаются.
-
-При изменении данных они сохраняются обратно.
-
----
-
-# Пример JSON
-
-[
-    {
-        "id": 1,
-        "type": "student",
-        "first_name": "Ali",
-        "last_name": "Karimov",
-        "age": 19,
-        "email": "ali@example.com",
-        "faculty": "Computer Science",
-        "course": 2,
-        "gpa": 4.5
-    }
-]
+```json
+{
+    "type": "teacher",
+    "user_id": 2001,
+    "first_name": "Abdullo",
+    "last_name": "Rahimov",
+    "age": 45,
+    "email": "abdullo.rahimov@example.com",
+    "department": "Computer Science",
+    "subject": "Python",
+    "experience": 18
+}
+```
 
 ---
 
-# Проверка данных
+## Установка
 
-Программа должна проверять ввод.
+Клонировать репозиторий:
 
-Нельзя добавить:
+```bash
+git clone https://github.com/mzbnsz/UniversityCLI.git
+```
 
-- пустое имя
-- отрицательный возраст
-- неправильный email
-- курс меньше 1
-- GPA меньше 0
-- GPA больше 5
+Перейти в папку проекта:
 
-При неправильном вводе программа не должна падать.
+```bash
+cd UniversityCLI
+```
 
-Пользователь должен получить понятное сообщение.
+Создать виртуальное окружение:
 
-Например:
+```bash
+python3 -m venv .venv
+```
 
-Invalid age. Please enter a number between 16 and 100.
+Активировать виртуальное окружение:
 
----
+```bash
+source .venv/bin/activate
+```
 
-# Исключения
+Установить Flask:
 
-Использовать:
-
-try
-except
-
-Программа должна корректно обрабатывать:
-
-- неправильный ввод
-- отсутствие файла
-- поврежденный JSON
-- попытку найти несуществующего пользователя
-- неверный ID
+```bash
+pip install flask
+```
 
 ---
 
-# Logging
+## Запуск
 
-Добавить логирование.
+Запустить приложение:
 
-Использовать стандартный модуль:
+```bash
+python app.py
+```
 
-logging
+После запуска открыть:
 
-Файл:
-
-logs/app.log
-
-Пример:
-
-INFO - Student created: ID 12
-INFO - Teacher deleted: ID 5
-WARNING - User not found: ID 44
-ERROR - Failed to load users.json
-
-Это сделает проект ближе к реальному приложению.
+```text
+http://127.0.0.1:5000
+```
 
 ---
 
-# ID
-
-Каждый пользователь должен иметь уникальный ID.
-
-Например:
-
-Student:
-ID: 1
-
-Teacher:
-ID: 2
-
-Student:
-ID: 3
-
-ID не должны повторяться.
-
----
-
-# __str__
-
-Для Student и Teacher реализовать:
-
-__str__()
-
-Чтобы можно было сделать:
-
-print(student)
-
-и получить нормальный результат.
-
-Например:
-
-[Student #15] Ali Karimov | Computer Science | Course 2 | GPA: 4.5
-
----
-
-# Требования к коду
-
-Проект должен:
-
-- использовать ООП
-- использовать наследование
-- использовать инкапсуляцию
-- использовать полиморфизм
-- использовать абстракцию
-- использовать @property
-- использовать исключения
-- работать с JSON
-- использовать функции
-- использовать модули
-- использовать logging
-- иметь понятные имена переменных
-- не хранить всю программу в main.py
-
----
-
-# Дополнительные функции
-
-После основной версии можно добавить:
-
-## Export
-
-Экспорт студентов в:
-
-students.txt
-
-или:
-
-students.csv
-
----
-
-## Top students
-
-Показать TOP-5 студентов по GPA.
-
----
-
-## Filtering
-
-Например:
-
-Показать только студентов:
-
-Faculty = Computer Science
-
-или:
-
-Course = 2
-
----
-
-# Версия 2.0
-
-После изучения SQL заменить JSON на:
-
-PostgreSQL
-
-Добавить:
-
-- SQL
-- PostgreSQL
-- SQLAlchemy
-
-Архитектура проекта при этом останется похожей.
-
----
-
-# Версия 3.0
-
-В будущем проект можно превратить в Backend API.
-
-Использовать:
-
-FastAPI
-
-Пример endpoints:
-
-GET /students
-GET /students/{id}
-POST /students
-PUT /students/{id}
-DELETE /students/{id}
-
-То есть этот проект можно постепенно развивать:
-
-CLI
-↓
-PostgreSQL
-↓
-FastAPI
-↓
-полноценный backend-проект
-
----
-
-# Что демонстрирует проект
-
-UniversityCLI демонстрирует знания:
+## Что изучается в проекте
 
 - Python
-- Object-Oriented Programming
-- Inheritance
-- Encapsulation
-- Polymorphism
-- Abstraction
-- File handling
+- ООП
+- Flask
+- HTML
+- CSS
+- Flexbox
+- Jinja2
+- HTTP
+- GET
+- POST
+- CRUD
 - JSON
-- Exception handling
+- Git
+- GitHub
 - Logging
-- Modular architecture
-- CRUD operations
-- Input validation
+- Exception Handling
+- архитектура веб-приложений
 
 ---
 
-# План разработки
+## Дальнейшее развитие
 
-## Stage 1 — Project structure
+Планируется:
 
-Создать:
-
-main.py
-models.py
-services.py
-utils.py
-README.md
-
-Создать папки:
-
-data/
-logs/
-
----
-
-## Stage 2 — Models
-
-Создать:
-
-User
-Student
-Teacher
-
-Реализовать:
-
-inheritance
-abstractmethod
-property
-__str__
+- улучшенный поиск;
+- фильтрация;
+- сортировка;
+- улучшение интерфейса;
+- PostgreSQL вместо JSON;
+- SQLAlchemy;
+- Flask Blueprints;
+- авторизация;
+- REST API;
+- тестирование;
+- Docker;
+- деплой.
 
 ---
 
-## Stage 3 — UniversityService
+## Автор
 
-Реализовать:
+**Mizbonshoh Murzoev**
 
-add
-show
-find
-
-для Student и Teacher.
-
----
-
-## Stage 4 — CRUD
-
-Добавить:
-
-Create
-Read
-Update
-Delete
-
----
-
-## Stage 5 — JSON
-
-Добавить:
-
-load_data()
-save_data()
-
----
-
-## Stage 6 — Validation
-
-Проверять:
-
-age
-email
-GPA
-course
-empty fields
-
----
-
-## Stage 7 — Search and sorting
-
-Добавить:
-
-search
-filter
-sorting
-
----
-
-## Stage 8 — Statistics
-
-Добавить статистику университета.
-
----
-
-## Stage 9 — Logging
-
-Добавить логирование действий.
-
----
-
-## Stage 10 — Refactoring
-
-Проверить архитектуру.
-
-Убрать повторяющийся код.
-
-Привести проект в чистый вид.
-
----
-
-## Stage 11 — GitHub
-
-Добавить:
-
-README.md
-.gitignore
-requirements.txt (если понадобятся зависимости)
-
-Сделать понятные Git commits.
-
-Например:
-
-Initial project structure
-
-Add User, Student and Teacher models
-
-Implement student CRUD
-
-Add JSON persistence
-
-Add validation
-
-Add logging
-
-Add statistics
-
-Refactor project structure
+Python Backend Developer
