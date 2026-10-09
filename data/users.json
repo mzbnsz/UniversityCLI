@@ -1,0 +1,13 @@
+[
+    {
+        "type": "teacher",
+        "user_id": 2,
+        "first_name": "св",
+        "last_name": "вс",
+        "age": 22,
+        "email": "@mail.com",
+        "department": "xe",
+        "subject": "2",
+        "experience": 2
+    }
+]
